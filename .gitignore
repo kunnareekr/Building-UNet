@@ -1,0 +1,14 @@
+*.pyc
+__pycache__/
+checkpoints/
+*.pth
+*.jpg
+.venv/
+.idea/
+
+data/*
+raw_jpg/*
+spilt_jpg/*
+wandb/*
+!*/.keeps
+dataset_versioning
