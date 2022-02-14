@@ -1,0 +1,17 @@
+version: '3'
+services:
+  cuda-python:
+    build: 
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - ./:/root/projects
+    environment:
+      - PIPENV_VENV_IN_PROJECT="enabled"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

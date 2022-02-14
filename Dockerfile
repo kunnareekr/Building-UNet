@@ -1,9 +1,15 @@
-FROM nvcr.io/nvidia/pytorch:21.06-py3
+FROM nvidia/cuda:11.6.0-devel-ubuntu20.04
 
-RUN rm -rf /workspace/*
-WORKDIR /workspace/unet
+RUN apt update && apt upgrade -y
+RUN apt install python3 python3-pip -y
+RUN apt install git -y
+RUN pip install jupyter ipython pipenv
+RUN pip install matplotlib
+RUN pip install numpy
+RUN pip install Pillow
+RUN pip install torch
+RUN pip install torchvision
+RUN pip install tqdm
+RUN pip install wandb
 
-ADD requirements.txt .
-RUN pip install --no-cache-dir --upgrade --pre pip
-RUN pip install --no-cache-dir -r requirements.txt
-ADD . .
+CMD tail -f /dev/null
