@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: dockerfile
     volumes:
-      - ./:/root/projects
+      - ./src:/root/projects
     environment:
       - PIPENV_VENV_IN_PROJECT="enabled"
     deploy:
