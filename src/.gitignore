@@ -10,5 +10,7 @@ data/*
 raw_jpg/*
 spilt_jpg/*
 wandb/*
+
+dataset/*
+
 !*/.keeps
-dataset_versioning

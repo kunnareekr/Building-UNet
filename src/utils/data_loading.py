@@ -73,10 +73,12 @@ class BasicDataset(Dataset):
 
         img = self.preprocess(img, self.scale, is_mask=False)
         mask = self.preprocess(mask, self.scale, is_mask=True)
-
+        # print(img_file, img_file[0])
+        import os
         return {
             'image': torch.as_tensor(img.copy()).float().contiguous(),
-            'mask': torch.as_tensor(mask.copy()).long().contiguous()
+            'mask': torch.as_tensor(mask.copy()).long().contiguous(),
+            'name': os.path.split(str(img_file[0]))[1]
         }
 
 

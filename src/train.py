@@ -16,8 +16,8 @@ from utils.dice_score import dice_loss
 from evaluate import evaluate
 from unet import UNet
 
-dir_img = Path('./data/imgs/')
-dir_mask = Path('./data/masks/')
+dir_img = None
+dir_mask = None
 dir_checkpoint = Path('./checkpoints/')
 
 
@@ -154,17 +154,20 @@ def get_args():
     parser.add_argument('--validation', '-v', dest='val', type=float, default=10.0,
                         help='Percent of the data that is used as validation (0-100)')
     parser.add_argument('--amp', action='store_true', default=False, help='Use mixed precision')
-
+    parser.add_argument('--dataset', type=str,default='./data/')
     return parser.parse_args()
 
 
 if __name__ == '__main__':
     args = get_args()
 
+    dir_img = Path(f'{args.dataset}/imgs/')
+    dir_mask = Path(f'{args.dataset}/masks/')
+
     logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logging.info(f'Using device {device}')
-
+    logging.info(f'Dataset {args.dataset}')
     # Change here to adapt to your data
     # n_channels=3 for RGB images
     # n_classes is the number of probabilities you want to get per pixel
